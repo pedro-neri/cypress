@@ -62,7 +62,7 @@ function verificarPerfil() {
         cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
         .should('exist')
         .shadow()
-        .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 20000 })
+        .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 30000 })
         .should('be.visible').click()
         cy.wait(4000);
 

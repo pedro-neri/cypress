@@ -1,15 +1,20 @@
 import { login } from "../support/utils";
 
+//Login e senha a serem utilizados
+
+
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
     //Visita o site de login
     cy.visit('https://web-hml.privacy.com.br/board')
+    // cy.visit('https://web-hml.privacy.com.br/board')
     //Realiza o processo de login
     login()
 
     //Entra na aba de gratuitos dentro da search
     cy.get('#privacy-header--search-button').click()
     cy.get('#privacy-web-omnisearch').shadow()
+    .wait(2000)
     .find('#tab-free.el-tabs__item.is-top', { timeout: 40000 })
     .should('be.visible').click({force:true})
     .wait(3000)
@@ -48,13 +53,14 @@ function verificarPerfil() {
 
       if (texto.includes('mimo')) {
 
-        cy.go('back', {timeout: 1000});
+        cy.go('back', {timeout: 5000});
         cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
         .should('exist')
         .shadow()
-        .find('#tab-free.el-tabs__item.is-top', { timeout: 20000 })
-        .should('be.visible').click()
-        cy.wait(4000);
+        .find('#tab-free.el-tabs__item.is-top', { timeout: 30000 })
+        .should('be.visible')
+        .click()
+        cy.wait(2000);
 
         index++;
 
