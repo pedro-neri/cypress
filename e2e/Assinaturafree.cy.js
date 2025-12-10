@@ -1,8 +1,5 @@
 import { login } from "../support/utils";
 
-//Login e senha a serem utilizados
-
-
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
 
@@ -16,7 +13,7 @@ describe('Login e realização de assinatura de perfil grátis', () => {
     
 
     //Realiza o processo de login
-    login(email, senha)
+    login(email,senha)
 
     //Entra na aba de gratuitos dentro da search
     cy.get('#privacy-header--search-button').click()
@@ -60,20 +57,14 @@ function verificarPerfil() {
 
       if (texto.includes('mimo')) {
 
-          cy.get('#privacy-header--search-button').click()
-          cy.get('#privacy-web-omnisearch').shadow()
-          .wait(2000)
-          .find('#tab-free.el-tabs__item.is-top', { timeout: 40000 })
-          .should('be.visible').click({force:true})
-          .wait(3000)
-        // cy.go('back', {timeout: 5000});
-        // cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
-        // .should('exist')
-        // .shadow()
-        // .find('#tab-free.el-tabs__item.is-top', { timeout: 30000 })
-        // .should('be.visible')
-        // .click()
-        // cy.wait(2000);
+        cy.go('back', {timeout: 5000});
+        cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
+        .should('exist')
+        .shadow()
+        .find('#tab-free.el-tabs__item.is-top', { timeout: 30000 })
+        .should('be.visible')
+        .click()
+        cy.wait(2000);
 
         index++;
 
