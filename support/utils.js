@@ -6,10 +6,10 @@ export const maybeClickByText = (re) => {
   });
 };
 
-///////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
 
-export function login() {
+export function login(email, senha) {
 
 //   cy.visit('https://web-hml.privacy.com.br/');
 
@@ -24,11 +24,12 @@ export function login() {
 
       cy.get('input[type="email"]', { timeout: 10000 })
         .filter(':visible').first().click({ force: true })
-        .type('pedro.neri@privacy.com.br', { log: false });
+        .type(email, { log: false });
 
       cy.get('input[type="password"]', { timeout: 10000 })
         .filter(':visible').first()
-        .click({ force: true }).type('@123senhaHml', { log: false });
+        .click({ force: true })
+        .type(senha, { log: false });
 
       cy.contains('button', /Entrar/i).click({ force: true });
     });

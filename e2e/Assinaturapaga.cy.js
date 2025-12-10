@@ -1,13 +1,20 @@
 import { login } from "../support/utils";
 
+     //LOGIN E SENHA QUE SERÃO UTILIZADOS
+    const email = 'pedro.neri@privacy.com.br';
+    const senha = '@123senhaHml';
+    
+
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
+
+   
     //Visita o site de login
     cy.visit('https://web-hml.privacy.com.br/board')
     //Realiza o processo de login
-    login()
+    login(email, senha)
 
-    //Entra na aba de gratuitos dentro da search
+    //Entra na sessão "todos" da search
     cy.get('#privacy-header--search-button').click()
     cy.get('#privacy-web-omnisearch').shadow()
     .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
@@ -64,7 +71,7 @@ function verificarPerfil() {
         .shadow()
         .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 30000 })
         .should('be.visible').click()
-        cy.wait(4000);
+        cy.wait(2000);
 
         index++;
 

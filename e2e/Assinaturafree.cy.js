@@ -5,11 +5,18 @@ import { login } from "../support/utils";
 
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
+
+    //LOGIN E SENHA QUE SERÃO UTILIZADOS
+    const email = 'pedro.neri@privacy.com.br';
+    const senha = '@123senhaHml';
+
+
     //Visita o site de login
     cy.visit('https://web-hml.privacy.com.br/board')
-    // cy.visit('https://web-hml.privacy.com.br/board')
+    
+
     //Realiza o processo de login
-    login()
+    login(email, senha)
 
     //Entra na aba de gratuitos dentro da search
     cy.get('#privacy-header--search-button').click()
@@ -53,14 +60,20 @@ function verificarPerfil() {
 
       if (texto.includes('mimo')) {
 
-        cy.go('back', {timeout: 5000});
-        cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
-        .should('exist')
-        .shadow()
-        .find('#tab-free.el-tabs__item.is-top', { timeout: 30000 })
-        .should('be.visible')
-        .click()
-        cy.wait(2000);
+          cy.get('#privacy-header--search-button').click()
+          cy.get('#privacy-web-omnisearch').shadow()
+          .wait(2000)
+          .find('#tab-free.el-tabs__item.is-top', { timeout: 40000 })
+          .should('be.visible').click({force:true})
+          .wait(3000)
+        // cy.go('back', {timeout: 5000});
+        // cy.get('#privacy-web-omnisearch',{ timeout: 50000 })
+        // .should('exist')
+        // .shadow()
+        // .find('#tab-free.el-tabs__item.is-top', { timeout: 30000 })
+        // .should('be.visible')
+        // .click()
+        // cy.wait(2000);
 
         index++;
 
