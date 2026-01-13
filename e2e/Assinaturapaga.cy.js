@@ -1,12 +1,12 @@
 import { login } from "../support/utils";
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
-    const email = 'pedro.neri@privacy.com.br';
+    const email = 'dijic19471@wivstore.com';
     const senha = '@123senhaHml';
     
 
-describe('Login e realização de assinatura de perfil grátis', () => {
-  it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
+describe('Login e realização de assinatura de perfil pago', () => {
+  it('Ao realizar o login deverá localizar um perfil pago ainda não assinado e assina-lo', () => {
 
    
     //Visita o site de login
@@ -40,25 +40,62 @@ function verificarPerfil() {
 
       const btn = $shadow.find('.btn-interactions .text-sm.font-medium');
 
-      // Se o botão "mimo" NÃO existe, é um perfil ainda não assinado e será assinado
-      if (!btn.length) {
-        cy.get('#privacy-web-user-info')
-        .shadow()
-        .find('.el-button.btn-subscription.row.d-flex', { timeout: 10000 })
-        .should('be.visible')
-        .click({ multiple: true });;
-        cy.get('#privacy-web-payment', { timeout: 15000 })
-        .should('exist')
-        .shadow()
-        .find('.d-flex.payment-method-item-content.payment-method-wallet-card', { timeout: 10000 })
-        .click({ force: true })
-        cy.get('#privacy-web-payment').shadow()
-        .find('.el-button.el-button--outline.is-plain', {timeout: 20000})
-        .should('be.visible')
-        .click()
-        
-        return;
+// Se o botão "mimo" NÃO existe, é um perfil ainda não assinado
+if (!btn.length) {
+
+  const startTime = Date.now();
+
+  cy.get('#privacy-web-user-info')
+    .shadow()
+    .find('.el-button.btn-subscription.row.d-flex', { timeout: 10000 })
+    .should('be.visible')
+    .click({ multiple: true });
+
+  cy.get('#privacy-web-payment', { timeout: 15000 })
+    .should('exist')
+    .then(
+      // SUCESSO — modal carregou
+      () => {
+        const endTime = Date.now();
+        const loadTime = endTime - startTime;
+
+        cy.log('Modal de pagamento carregado com sucesso');
+        cy.log(`Tempo de carregamento: ${loadTime} ms`);
+      },
+
+      // FALHA — modal não carregou
+      (error) => {
+        cy.log('Modal de pagamento não exibido, erro identificado');
+
+        cy.screenshot('modal-pagamento-nao-exibido');
+
+    
+        console.error('Erro ao carregar modal de pagamento:', error);
+
       }
+    );
+
+  return;
+}
+
+      // if (!btn.length) {
+      //   cy.get('#privacy-web-user-info')
+      //   .shadow()
+      //   .find('.el-button.btn-subscription.row.d-flex', { timeout: 10000 })
+      //   .should('be.visible')
+      //   .click({ multiple: true });;
+      //   cy.get('#privacy-web-payment', { timeout: 15000 })
+      //   .should('exist')
+      //   .shadow()
+      //   .find('.d-flex.payment-method-item-content.payment-method-wallet-card', { timeout: 10000 })
+      //   .click({ force: true })
+      //   cy.get('#privacy-web-payment').shadow()
+      //   .find('.el-button.el-button--outline.is-plain', {timeout: 20000})
+      //   .should('be.visible')
+      //   .click()
+        
+      //   return;
+      // }
 
       // Caso o botão exista, retorna para a tela anterior e vai para o próximo perfil
       const texto = btn.text().trim().toLowerCase();

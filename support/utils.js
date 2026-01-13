@@ -36,7 +36,7 @@ export function login(email, senha) {
 
   cy.wait(1000);
 
-  cy.get('.privacy-initial-banner-close', { timeout: 10000 })
-    .should('be.visible').click({ force: true });
+  // cy.get('.privacy-initial-banner-close', { timeout: 10000 })
+  //   .should('be.visible').click({ force: true });
 
 }
