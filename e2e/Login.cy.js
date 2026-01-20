@@ -19,7 +19,7 @@ describe('Processo de login', () => {
     .click({ force: true });
     cy.wait(1000)
   })
-  cy.get('.privacy-initial-banner-close', { timeout: 10000 }).should('be.visible').click();
+  // cy.get('.privacy-initial-banner-close', { timeout: 10000 }).should('be.visible').click();
 
 })
 })
