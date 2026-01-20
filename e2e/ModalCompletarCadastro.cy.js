@@ -80,25 +80,6 @@ if (!btn.length) {
   return;
 }
 
-      // if (!btn.length) {
-      //   cy.get('#privacy-web-user-info')
-      //   .shadow()
-      //   .find('.el-button.btn-subscription.row.d-flex', { timeout: 10000 })
-      //   .should('be.visible')
-      //   .click({ multiple: true });;
-      //   cy.get('#privacy-web-payment', { timeout: 15000 })
-      //   .should('exist')
-      //   .shadow()
-      //   .find('.d-flex.payment-method-item-content.payment-method-wallet-card', { timeout: 10000 })
-      //   .click({ force: true })
-      //   cy.get('#privacy-web-payment').shadow()
-      //   .find('.el-button.el-button--outline.is-plain', {timeout: 20000})
-      //   .should('be.visible')
-      //   .click()
-        
-      //   return;
-      // }
-
       // Caso o botão exista, retorna para a tela anterior e vai para o próximo perfil
       const texto = btn.text().trim().toLowerCase();
 
