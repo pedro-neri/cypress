@@ -10,7 +10,7 @@ describe('Login e realização de assinatura de perfil pago', () => {
 
 
     //Visita o site de login
-    cy.visit('https://web-hml.privacy.com.br/board')
+    cy.visit('https://web-dev.privacy.com.br/board')
     //Realiza o processo de login
     login(email, senha)
 
