@@ -1,7 +1,7 @@
 import { login } from "../support/utils";
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
-    const email = 'dijic19471@wivstore.com';
+    const email = 'pedro.neri@privacy.com.br';
     const senha = '@123senhaHml';
 
 
@@ -10,7 +10,7 @@ describe('Login e realização de assinatura de perfil pago', () => {
 
 
     //Visita o site de login
-    cy.visit('https://web-dev.privacy.com.br/board')
+    cy.visit('https://web-hml.privacy.com.br/board')
     //Realiza o processo de login
     login(email, senha)
 

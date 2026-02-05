@@ -4,7 +4,7 @@ describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
 
     //LOGIN E SENHA QUE SERÃO UTILIZADOS
-    const email = 'marihet705@fantastu.com';
+    const email = 'pedro.neri@privacy.com.br';
     const senha = '@123senhaHml';
 
 

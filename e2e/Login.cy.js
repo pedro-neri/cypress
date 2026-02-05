@@ -1,19 +1,23 @@
 /// <reference types="cypress" />
 import { maybeClickByText } from "../support/utils"
 
+     //LOGIN E SENHA QUE SERÃO UTILIZADOS
+    const email = 'pedro.neri@privacy.com.br';
+    const senha = '@123senhaHml';
+
 describe('Processo de login', () => {
 
   beforeEach(() => {
    cy.intercept({ url: 'https://service*.privacy.com.br/auth/*' }, (req) => {
     if (["OPTIONS", "HEAD"].includes(req.method)) return
 
-     req.headers['x-captcha-bypass-token'] = 'dev-bypass-token';
+     req.headers['x-captcha-bypass-token'] = 'hml-bypass-token';
     }).as('bypassConfig');
   })
 
   it('Acessar a página inicial do privacy e então realizar o login', () => {
     
-    cy.visit('https://web-dev.privacy.com.br/')
+    cy.visit('https://web-hml.privacy.com.br/')
     maybeClickByText(/aceitar|accept|ok|entendi/i);
     cy.get('privacy-web-auth', { timeout: 20000 }).should('exist');
     
@@ -21,10 +25,10 @@ describe('Processo de login', () => {
     .within(async() => { 
     cy.get('input[type="email"]', {timeout: 10000})
     .filter(':visible').first().click({force: true})
-    .type('pedro.neri@privacy.com.br', {log: false});
+    .type(email, {log: false});
     cy.get('input[type="password"',{timeout: 10000})
     .filter(':visible').first().click({force:true})
-    .type('@123senhaDev'), {log: false}
+    .type(senha), {log: false}
 
     await cy.wait('@bypassConfig');
 

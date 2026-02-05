@@ -19,19 +19,20 @@ export function login(email, senha) {
    cy.intercept({ url: 'https://service*.privacy.com.br/auth/*' }, (req) => {
     if (["OPTIONS", "HEAD"].includes(req.method)) return
 
-     req.headers['x-captcha-bypass-token'] = 'dev-bypass-token';
+     req.headers['x-captcha-bypass-token'] = 'hml-bypass-token';
     }).as('bypassConfig');
-    
+
+
     cy.get('privacy-web-auth', { timeout: 20000 }).should('exist');
     
     cy.get ('privacy-web-auth').shadow() 
     .within(async() => { 
     cy.get('input[type="email"]', {timeout: 10000})
     .filter(':visible').first().click({force: true})
-    .type('pedro.neri@privacy.com.br', {log: false});
+    .type(email, {log: false});
     cy.get('input[type="password"',{timeout: 10000})
     .filter(':visible').first().click({force:true})
-    .type('@123senhaDev'), {log: false}
+    .type(senha), {log: false}
 
     await cy.wait('@bypassConfig');
 
