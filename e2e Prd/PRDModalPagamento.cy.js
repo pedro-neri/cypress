@@ -10,9 +10,9 @@ describe('Login e realização de assinatura de perfil pago', () => {
 
    
     //Visita o site de login
-    cy.visit('https://web-hml.privacy.com.br/board')
+    cy.visit('https://privacy.com.br')
     //Realiza o processo de login
-    login(email, senha)
+    PRDlogin(email, senha)
 
     //Entra na sessão "todos" da search
     cy.get('#privacy-header--search-button').click()

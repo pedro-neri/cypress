@@ -1,7 +1,7 @@
 import { login } from "../support/utils";
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
-    const email = 'pedro.neri@privacy.com.br';
+    const email = 'fayev66347@noihse.com';
     const senha = '@123senhaHml';
     
 
@@ -10,9 +10,9 @@ describe('Login e realização de assinatura de perfil pago', () => {
 
    
     //Visita o site de login
-    cy.visit('https://web-hml.privacy.com.br/board')
+    cy.visit('https://privacy.com.br')
     //Realiza o processo de login
-    login(email, senha)
+    PRDlogin(email, senha)
 
     //Entra na sessão "todos" da search
     cy.get('#privacy-header--search-button').click()
@@ -52,6 +52,8 @@ if (!btn.length) {
     .click({ multiple: true });
 
   cy.get('#privacy-web-payment', { timeout: 15000 })
+    .shadow()
+    .find('.el-dialog__body')
     .should('exist')
     .then(
       // SUCESSO — modal carregou
@@ -59,43 +61,24 @@ if (!btn.length) {
         const endTime = Date.now();
         const loadTime = endTime - startTime;
 
-        cy.log('Modal de pagamento carregado com sucesso');
+        cy.log('Modal de completar os dados carregado com sucesso');
         cy.log(`Tempo de carregamento: ${loadTime} ms`);
       },
 
       // FALHA — modal não carregou
       (error) => {
-        cy.log('Modal de pagamento não exibido, erro identificado');
+        cy.log('Modal de completar dados não exibido, erro identificado');
 
-        cy.screenshot('modal-pagamento-nao-exibido');
+        cy.screenshot('modal-complete-dados-nao-exibido');
 
     
-        console.error('Erro ao carregar modal de pagamento:', error);
+        console.error('Erro ao carregar modal de completar dados:', error);
 
       }
     );
 
   return;
 }
-
-      // if (!btn.length) {
-      //   cy.get('#privacy-web-user-info')
-      //   .shadow()
-      //   .find('.el-button.btn-subscription.row.d-flex', { timeout: 10000 })
-      //   .should('be.visible')
-      //   .click({ multiple: true });;
-      //   cy.get('#privacy-web-payment', { timeout: 15000 })
-      //   .should('exist')
-      //   .shadow()
-      //   .find('.d-flex.payment-method-item-content.payment-method-wallet-card', { timeout: 10000 })
-      //   .click({ force: true })
-      //   cy.get('#privacy-web-payment').shadow()
-      //   .find('.el-button.el-button--outline.is-plain', {timeout: 20000})
-      //   .should('be.visible')
-      //   .click()
-        
-      //   return;
-      // }
 
       // Caso o botão exista, retorna para a tela anterior e vai para o próximo perfil
       const texto = btn.text().trim().toLowerCase();
