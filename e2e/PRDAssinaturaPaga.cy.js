@@ -1,4 +1,4 @@
-import { login } from "../support/utils";
+import { PRDlogin } from "../support/utils";
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
     const email = 'pedro.neri@privacy.com.br';

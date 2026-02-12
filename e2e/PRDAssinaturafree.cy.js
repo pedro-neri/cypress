@@ -1,11 +1,11 @@
-import { login } from "../support/utils";
+import { PRDlogin } from "../support/utils";
 
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
 
     //LOGIN E SENHA QUE SERÃO UTILIZADOS
     const email = 'pedro.neri@privacy.com.br';
-    const senha = '@123senhaHml';
+    const senha = '@123senhaProd';
 
 
     //Visita o site de login
