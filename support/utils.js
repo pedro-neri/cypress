@@ -57,7 +57,7 @@ export function login(email, senha) {
    cy.intercept({ url: 'https://service*.privacy.com.br/auth/*' }, (req) => {
     if (["OPTIONS", "HEAD"].includes(req.method)) return
 
-     req.headers['x-captcha-bypass-token'] = '0mD8SJZSaW3xeIFDCunTRjrLSUZY5pRZKCJ1WCr3L3To8JvFYesO0aKQdHhhV7GS';
+     req.headers['x-captcha-bypass-token'] = 'hml-bypass-token';
     }).as('bypassConfig');
 
 
@@ -81,3 +81,4 @@ export function login(email, senha) {
     cy.wait(1000)
   })
 }
+

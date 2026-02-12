@@ -2,8 +2,8 @@ import { PRDlogin } from "../support/utils";
 
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
-    const email = 'pedro.neri@privacy.com.br';
-    const senha = '@123senhaProd';
+    const email = 'wotefa3135@deposin.com';
+    const senha = '@123senhaHml';
     
 
 describe('Login e realização de assinatura de perfil pago', () => {
@@ -14,21 +14,20 @@ describe('Login e realização de assinatura de perfil pago', () => {
     cy.visit('https://privacy.com.br')
     //Realiza o processo de login
     PRDlogin(email, senha)
-
-    //Entra na sessão "todos" da search
-    cy.get('#privacy-header--search-button').click()
+   //Entra na sessão "todos" da search
+    cy.get('#privacy-web-floatmenu').shadow()
+    .find('.svg-inline--fa.fa-search.pwt-icon.pwt-tab-bar__icon').click()
     cy.get('#privacy-web-omnisearch').shadow()
     .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
     .should('be.visible').click({force:true})
     .wait(3000)
-
 
 //Faz a leitura dos perfis exibidos, entra em cada um e realiza a assinatura do primeiro perfil ainda não assinado   
 cy.get('#privacy-web-omnisearch').shadow()
   .within(() => { 
     cy.get('.profile-card').as('cards');
   });
-let index = 5;
+let index = 0;
 
 // Função interna para processar o perfil e validar se é ou não assinante
 function verificarPerfil() {

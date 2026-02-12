@@ -1,4 +1,5 @@
 import { login } from "../support/utils";
+import { creatorsearch } from "../support/utils";
 
      //LOGIN E SENHA QUE SERÃO UTILIZADOS
     const email = 'pedro.neri@privacy.com.br';
@@ -13,13 +14,19 @@ describe('Login e realização de assinatura de perfil pago', () => {
     cy.visit('https://web-hml.privacy.com.br/board')
     //Realiza o processo de login
     login(email, senha)
-
-    //Entra na sessão "todos" da search
     cy.get('#privacy-header--search-button').click()
     cy.get('#privacy-web-omnisearch').shadow()
-    .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
+    .wait(2000)
+    find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
     .should('be.visible').click({force:true})
     .wait(3000)
+    
+    // //Entra na sessão "todos" da search
+    // cy.get('#privacy-header--search-button').click()
+    // cy.get('#privacy-web-omnisearch').shadow()
+    // .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
+    // .should('be.visible').click({force:true})
+    // .wait(3000)
 
 
 //Faz a leitura dos perfis exibidos, entra em cada um e realiza a assinatura do primeiro perfil ainda não assinado   

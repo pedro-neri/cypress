@@ -1,4 +1,4 @@
-import { PRDlogin } from "../support/utils";
+import { creatorsearch, PRDlogin, usersearch } from "../support/utils";
 
 describe('Login e realização de assinatura de perfil grátis', () => {
   it('Ao realizar o login deverá localizar um perfil free ainda não assinado e assina-lo', () => {
@@ -14,11 +14,11 @@ describe('Login e realização de assinatura de perfil grátis', () => {
 
     //Realiza o processo de login
     PRDlogin(email,senha)
-
-    //Entra na aba de gratuitos dentro da search
+    
     cy.get('#privacy-header--search-button').click()
     cy.get('#privacy-web-omnisearch').shadow()
     .wait(2000)
+    //.find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
     .find('#tab-free.el-tabs__item.is-top', { timeout: 40000 })
     .should('be.visible').click({force:true})
     .wait(3000)
@@ -29,7 +29,7 @@ cy.get('#privacy-web-omnisearch').shadow()
   .within(() => { 
     cy.get('.profile-card').as('cards');
   });
-let index = 4;
+let index = 0;
 
 // Função interna para processar o perfil e validar se é ou não assinante
 function verificarPerfil() {

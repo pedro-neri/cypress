@@ -10,12 +10,13 @@ describe('Login e realização de assinatura de perfil pago', () => {
 
    
     //Visita o site de login
-    cy.visit('https://web-hml.privacy.com.br/board')
+    cy.visit('https://web-hml.privacy.com.br/')
     //Realiza o processo de login
     login(email, senha)
 
     //Entra na sessão "todos" da search
-    cy.get('#privacy-header--search-button').click()
+          cy.get('#privacy-web-floatmenu').shadow()
+    .find('.svg-inline--fa.fa-search.pwt-icon.pwt-tab-bar__icon').click()
     cy.get('#privacy-web-omnisearch').shadow()
     .find('#tab-all.el-tabs__item.is-top.is-active', { timeout: 40000 })
     .should('be.visible').click({force:true})
